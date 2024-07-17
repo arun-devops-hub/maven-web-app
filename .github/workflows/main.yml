@@ -5,7 +5,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: hello world job
-        run: echo "hello world, hi from github!
+        run: echo "hello world, hi from github!"
       - name: git repo clone
         uses: actions/checkout@v3
          
