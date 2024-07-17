@@ -33,3 +33,6 @@ jobs:
         with:
           name: my-artifact
           path: target/*.war
+      - name: Trivy FS Scan
+        run: |
+          trivy fs --format table -o trivy-fs-report.html .
