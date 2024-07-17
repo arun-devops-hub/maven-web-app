@@ -15,8 +15,8 @@ jobs:
             distribution: 'temurin'
             cache: maven
       - name: Set up Maven
-        uses: actions/setup-maven@v1
-        with:
-           maven-version: '3.9.8' # Specify the Maven version you need
+        run: |
+           sudo apt-get update
+           sudo apt-get install -y maven
       - name: Build with Maven
         run: mvn clean package
