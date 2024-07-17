@@ -15,6 +15,8 @@ jobs:
             distribution: 'temurin'
             cache: maven
       - name: Set up Maven
-        run: sudo ./maven_install.sh
+        run: |
+            cd /home/ubuntu/actions-runner/pwd/maven-web-app/maven-web-app
+            sudo ./maven_install.sh
       - name: Build with Maven
         run: mvn clean package
