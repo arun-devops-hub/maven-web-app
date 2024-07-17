@@ -40,8 +40,16 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         
-      - name: Build Docker Image
+      - name: Get Git commit SHA and branch name
+        id: vars
         run: |
-          IMAGE_NAME="arunhub2/maven-web-app"
-          IMAGE_TAG="${GIT_COMMIT}"
-          docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+           echo "COMMIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+           echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+
+      - name: Build and Tag Docker Image
+        run: |
+            IMAGE_NAME=arunhub2/maven-web-app
+            docker build -t $IMAGE_NAME:latest .
+            docker tag $IMAGE_NAME:latest $IMAGE_NAME:${{ env.COMMIT_SHA }}
+            docker tag $IMAGE_NAME:latest $IMAGE_NAME:${{ env.BRANCH_NAME }}
+
