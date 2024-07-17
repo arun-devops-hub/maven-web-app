@@ -6,6 +6,6 @@ jobs:
     steps:
       - name: hello world job
         run: echo "hello world, hi from github!
-      - name: git clone
+      - name: git repo clone
         uses: actions/checkout@v3
          
