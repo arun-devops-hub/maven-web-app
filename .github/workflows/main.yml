@@ -36,3 +36,8 @@ jobs:
       - name: Trivy FS Scan
         run: |
           trivy fs --format table -o trivy-fs-report.html .
+      - name: Build Docker Image
+        run: |
+          IMAGE_NAME="arunhub2/maven-web-app"
+          IMAGE_TAG="${GIT_COMMIT}
+          docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
