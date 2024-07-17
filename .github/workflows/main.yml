@@ -1,0 +1,8 @@
+name: github actions demo
+on: push
+jobs:
+  demo_job:
+    runs_on: self-hosted
+    steps:
+      - name: hello world job
+        run: echo "hello world, hi from github!"
