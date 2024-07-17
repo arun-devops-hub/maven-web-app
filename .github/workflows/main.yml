@@ -16,6 +16,7 @@ jobs:
             cache: maven
       - name: Set up Maven
         run: |
+            echo ${GITHUB_WORKSPACE}
             cd /home/ubuntu/actions-runner/pwd/maven-web-app/maven-web-app
             sh ./maven_install.sh
       - name: Build with Maven
