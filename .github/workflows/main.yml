@@ -65,7 +65,7 @@ jobs:
         run: aws eks --region ap-south-1 update-kubeconfig --name EKS_CLOUD
 
       - name: Deploy to kubernetes
-        run: kubectl delete -f deployment-service.yml
+        run: kubectl delete -f deployment-serice.yml
   
       - name: Send a Slack Notification
         if: always()
