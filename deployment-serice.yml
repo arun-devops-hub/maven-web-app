@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: my-cont
-        image: arunhub2/maven-web-app:latest
+        image: arunhub2/maven-web-app
         ports:
         - containerPort: 80
   ----------------
