@@ -1,5 +1,5 @@
 name: github actions demo
-on: push
+on: workflow_dispatch
 jobs:
   demo_job:
     runs-on: self-hosted
@@ -60,6 +60,22 @@ jobs:
             
       - name: Push Docker Image
         run: docker push $IMAGE_NAME:${{ env.COMMIT_SHA }}
+
+      - name: Update kubeconfig
+        run: aws eks --region ap-south-1 update-kubeconfig --name EKS_CLOUD
+
+      - name: Deploy to kubernetes
+        run: kubectl delete -f deployment-service.yml
+  
+      - name: Send a Slack Notification
+        if: always()
+        uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: '#training'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 
 
